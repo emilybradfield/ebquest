@@ -29,9 +29,15 @@ ROUTER.route('/read/:_id').get((req, res) => {
     User.findById(req.params._id).then((user) => res.json(user)).catch((err) => res.json(err))
 })
 
-ROUTER.route(`/match/:_username`).get((req, res) => {
-    User.find({'username': req.params.username}).then((user) => res.json(user)).catch((err) => res.json(err))
+ROUTER.route(`/match/:username`).get((req, res) => {
+    User.findOne({'username' : req.params.username}).then((user) => res.json(user)).catch((err) => res.json(err))})
+
+ROUTER.route(`/signin/`).post( async(req, res) => {
+    let user = await signInUser(req.body.email, req.body.password)
+    let uuid = user.uid;
+    User.findById(uuid).then((user) => res.json(user)).catch((err) => res.json(err))
 })
+
 
 ROUTER.route('/update/:_id').post((req, res) => {
     User.findByIdAndUpdate({'_id':req.params._id}, req.params.body).then(() => res.json(true)).catch((err) => res.json(err))

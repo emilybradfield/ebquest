@@ -1,6 +1,7 @@
+const signUpBtn = document.querySelector("#signUp")
 const signInBtn = document.querySelector("#signIn")
 
-const getUserSignedUp = async() => {
+const signUpNewUser = async() => {
     let usernameTaken = false;
     let NEWUSER = {
         username: document.querySelector("#username").value,
@@ -10,7 +11,8 @@ const getUserSignedUp = async() => {
 
     await axios.get(`/users/match/${NEWUSER.username}`).then((res) => {
         let user = res.data;
-        if (user.username) usernameTaken = true;
+        console.log(res.data)
+        if (user.username !== null) usernameTaken = true;
     }).catch((err) => console.error(err));
 
     if (usernameTaken) {
@@ -26,6 +28,20 @@ const getUserSignedUp = async() => {
             console.error(err)
         })
     }
+};
+
+const signInExistingUser = async() => {
+    let EXISTINGUSER = {
+        email: document.querySelector("#email-in").value,
+        password: document.querySelector("#password-in").value
+    }
+    console.log(`User details given: ${JSON.stringify(EXISTINGUSER)}`)
+    await axios.post(`/users/signin/`, EXISTINGUSER).then((res) => {
+        USER = res.data;
+        localStorage.setItem("uuid", USER._id);
+        localStorage.setItem("user", JSON.stringify(USER));
+    }).catch((err) => console.log(err))
 }
 
-signInBtn.addEventListener("click", getUserSignedUp);
+signUpBtn.addEventListener("click", signUpNewUser);
+signInBtn.addEventListener("click", signInExistingUser);

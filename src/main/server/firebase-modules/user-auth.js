@@ -14,16 +14,15 @@ const signUpUser = async(email, password) => {
     return uuid;
 }
 
-const signInUser = (email, password) => {
-    signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
-        const user = userCredential.user;
-        const uuid = user.uid
-        return uuid;
+const signInUser = async(email, password) => {
+    let user = await signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
+        return userCredential.user;
     }).catch((err) => {
         const errorCode = err.code;
         const errorMessage = err.message;
         console.error(`ERROR ${errorCode} : ${errorMessage}`)
     })
+    return user;
 }
 
 module.exports = {signInUser, signUpUser}

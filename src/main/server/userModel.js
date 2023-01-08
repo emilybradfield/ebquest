@@ -29,6 +29,7 @@ const statsSchema = new Schema({
 const userSchema = new Schema({
     _id: String,
     username: String,
+    email: String,
     missionObjectives: [moSchema],
     sideQuests: [sqSchema],
     stats: [statsSchema]      
