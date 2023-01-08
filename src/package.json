@@ -1,0 +1,35 @@
+{
+  "name": "ebquest",
+  "version": "0.1.0-alpha",
+  "description": "",
+  "main": "main/client/index.html",
+  "scripts": {
+    "test": "cd main && echo 'TODO'",
+    "start": "cd main && nodemon server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emilybradfield/ebquest.git"
+  },
+  "author": "Emily Bradfield",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/emilybradfield/ebquest/issues"
+  },
+  "homepage": "https://github.com/emilybradfield/ebquest#readme",
+  "dependencies": {
+    "axios": "^1.2.2",
+    "chai": "^4.3.7",
+    "chai-http": "^4.3.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "firebase": "^9.15.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^10.2.0",
+    "mongoose": "^6.8.3",
+    "mongosh": "^1.6.1",
+    "nodemon": "^2.0.20",
+    "path": "^0.12.7"
+  }
+}
