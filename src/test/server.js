@@ -20,10 +20,10 @@ require("dotenv").config({
 const EXPRESS = require("express");
 const APP = EXPRESS();
 const CORS = require("cors");
-const PORT = process.env.PORT || 4000;
+const PORT = 4000;
 const MONGOOSE = require('mongoose');
-const USER_ROUTES = require("./userRouter.js")
-const URL = process.env.MONGO_URL
+const USER_ROUTES = require("../main/server/userRouter")
+const URL = process.env.TEST_DB
 const ROUTER = EXPRESS.Router();
 
 /**
