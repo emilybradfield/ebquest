@@ -51,7 +51,7 @@ const signUpNewUser = async() => {
         await axios.post(`/users/signup`, NEWUSER).then((res) => {
             let USER = res.data;
             let UUID = USER._id;
-            localStorage.setItem("uuid", newUser._id);
+            localStorage.setItem("uuid", UUID);
             window.location.replace('./home.html');
         }).catch((err) => {
             console.error(err)
@@ -82,8 +82,10 @@ const signInExistingUser = async() => {
     console.log(`User details given: ${JSON.stringify(EXISTINGUSER)}`)
     await axios.post(`/users/login`, EXISTINGUSER).then((res) => {
         let USER = res.data;
-        localStorage.setItem("uuid", USER._id);
-        window.location.replace("./home.html")
+        if (USER) {
+            localStorage.setItem("uuid", USER._id);
+            window.location.replace("./home.html")
+        }
     }).catch((err) => console.log(err))
 }
 
@@ -114,4 +116,4 @@ signInBtn.addEventListener("click", signInExistingUser);
  * 
  */
 
-window.onload(checkIfUserIsLoggedIn);
+window.addEventListener("load", checkIfUserIsLoggedIn);

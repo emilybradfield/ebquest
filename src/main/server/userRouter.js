@@ -77,7 +77,10 @@ ROUTER.route(`/signup`).post(async(req, res) => {
 
 ROUTER.route(`/login`).post( async(req, res) => {
     let UUID = await userAuth.signInUser(req.body.email, req.body.password)
-    User.findById(UUID).then((user) => res.json(user)).catch((err) => res.json(err))
+    User.findById(UUID).then((user) => {
+        user.uuid = UUID;
+        res.json(user)
+    }).catch((err) => res.json(err))
 })
 
 /**
