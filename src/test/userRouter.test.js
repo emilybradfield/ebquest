@@ -17,14 +17,13 @@ const defaultUser = {
     password: "any",
     missionObjectives: [],
     sideQuests: [],
-    stats: [
+    stats:
         {
             _id: 0,
             level: 1,
             xp: 0,
             dopa: 0
         }
-    ]
 };
 
 const defaultUserGainsXP = {
@@ -35,13 +34,12 @@ const defaultUserGainsXP = {
     password: "any",
     missionObjectives: [],
     sideQuests: [],
-    stats: [
+    stats:
         {
             level: 1,
             xp: 20,
             dopa: 0
         }
-    ]
 };
 
 jest.mock('../main/server/firebase-modules/user-auth', () => {

@@ -74,6 +74,7 @@ const signUpNewUser = async() => {
  * 
  */
 
+
 const signInExistingUser = async() => {
     let EXISTINGUSER = {
         email: document.querySelector("#email-in").value,
@@ -82,10 +83,10 @@ const signInExistingUser = async() => {
     console.log(`User details given: ${JSON.stringify(EXISTINGUSER)}`)
     await axios.post(`/users/login`, EXISTINGUSER).then((res) => {
         let USER = res.data;
-        if (USER) {
+        if (USER !== undefined) {
             localStorage.setItem("uuid", USER._id);
             window.location.replace("./home")
-        }
+        } else {window.alert("Invalid Login Attempt")}
     }).catch((err) => console.log(err))
 }
 

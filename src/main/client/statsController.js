@@ -26,13 +26,13 @@ const userLevelledUp = (previousUSER, newUSER) => {
     let newLevel;
     let userHasLevelledUp = false;
     for (let i = 0; i < xpPerLevel.length; i++) {
-        if (previousUSER.stats[0].xp >= i) {
+        if (previousUSER.stats.xp >= i) {
             currentLevel = (10 - i);
             return currentLevel;
         }
     }
     for (let i = 0; i < xpPerLevel.length; i++) {
-        if (newUSER.stats[0].xp >= i) {
+        if (newUSER.stats.xp >= i) {
             newLevel = (10 - i);
             return newLevel;
         }
@@ -54,16 +54,16 @@ const increaseXP = async (xpIncrease) => {
             missionObjectives: res.missionObjectives,
             sideQuests: res.sideQuests,
             stats: [{
-                level: res.stats[0].level,
-                xp: res.stats[0].xp + xpIncrease,
-                dopa: res.stats[0].dopa
+                level: res.stats.level,
+                xp: res.stats.xp + xpIncrease,
+                dopa: res.stats.dopa
             }]
         }
         return updatedUser
     }).catch((err) => console.error(err))
     if (userLevelledUp(_USER, updatedUser)) {
         updatedUser.stats[0].level += 1;
-        window.alert(`Congratulations ${updatedUser.username}! You reached level ${updatedUser.stats[0].level}`)
+        window.alert(`Congratulations ${updatedUser.username}! You reached level ${updatedUser.stats.level}`)
         window.location.reload();
     }
     await axios.post(`/users/update/${_UUID}`, updatedUser).then((res) => {

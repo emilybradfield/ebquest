@@ -45,11 +45,11 @@ ROUTER.route(`/signup`).post(async(req, res) => {
         username: req.body.username,
         missionObjectives: [],
         sideQuests: [],
-        stats: [{
+        stats: {
             level: 1,
             xp: 0,
             dopa: 0
-        }]
+        }
     }
     const NEW_USER = new User(USER);
     NEW_USER.save().then(() => res.json(NEW_USER)).catch((err) => res.json(err))
