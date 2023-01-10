@@ -14,13 +14,13 @@ const signInBtn = document.querySelector("#signIn")
  * @function checkIfUserIsLoggedIn
  * 
  * Let UUID = localStorage item "uuid"
- * If UUID found in localStorage, redirect to page '/home.html'
+ * If UUID found in localStorage, redirect to page '/home'
  * 
  */
 
 const checkIfUserIsLoggedIn = () => {
     const UUID = localStorage.getItem("uuid");
-    if (UUID) window.location.replace("./home.html")
+    if (UUID) window.location.replace("./home")
 }
 
 /**
@@ -52,7 +52,7 @@ const signUpNewUser = async() => {
             let USER = res.data;
             let UUID = USER._id;
             localStorage.setItem("uuid", UUID);
-            window.location.replace('./home.html');
+            window.location.replace('./home');
         }).catch((err) => {
             console.error(err)
         })
@@ -84,7 +84,7 @@ const signInExistingUser = async() => {
         let USER = res.data;
         if (USER) {
             localStorage.setItem("uuid", USER._id);
-            window.location.replace("./home.html")
+            window.location.replace("./home")
         }
     }).catch((err) => console.log(err))
 }
