@@ -65,10 +65,7 @@ const sqSchema = new Schema({
  */
 
 const statsSchema = new Schema({
-    _id: Number,
-	level: Number,
-	xp: Number,
-	dopa: Number
+
 }
 )
 
@@ -91,7 +88,12 @@ const userSchema = new Schema({
     email: String,
     missionObjectives: [moSchema],
     sideQuests: [sqSchema],
-    stats: [statsSchema]      
+    stats: {
+        _id: Number,
+        level: Number,
+        xp: Number,
+        dopa: Number
+    }    
 })
 
 /**

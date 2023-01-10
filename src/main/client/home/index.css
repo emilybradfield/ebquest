@@ -1,0 +1,37 @@
+body {
+    margin: 0;
+    text-align: center;
+    font-family: 'Montserrat', 'Veranda', 'Arial', 'Helvetica', 'Sans Serif';
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100vw;
+    min-height: 100%;
+}
+
+nav {
+    display: inline-flex;
+    flex-direction: row;
+}
+
+ul {
+    display: inline-flex;
+    flex-direction: row;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    justify-content: space-around;
+    list-style-type: none;
+}
+
+li {
+    list-style-type: inherit;
+}
+
+.sidebar-user_stats{
+    width: 50%;
+    text-align: left;
+    margin-left: 20%;
+    margin-right: auto;
+}

@@ -45,11 +45,11 @@ ROUTER.route(`/signup`).post(async(req, res) => {
         username: req.body.username,
         missionObjectives: [],
         sideQuests: [],
-        stats: [{
+        stats: {
             level: 1,
             xp: 0,
             dopa: 0
-        }]
+        }
     }
     const NEW_USER = new User(USER);
     NEW_USER.save().then(() => res.json(NEW_USER)).catch((err) => res.json(err))
@@ -132,7 +132,12 @@ ROUTER.route('/read/:_id').get((req, res) => {
  */
 
 ROUTER.route('/update/:_id').post((req, res) => {
-    User.findByIdAndUpdate({'_id':req.params._id}, req.params.body).then((user) => res.json(user)).catch((err) => res.json(err))
+    let updatedUSER = req.body;
+    updatedUSER._id = req.params._id;
+    User.findByIdAndDelete(req.params._id).then(() => {
+        const USER = new User(updatedUSER);
+        USER.save().then(() => res.json(USER)).catch((err) => console.error(err))
+    }).catch((err) => console.error(err))
 })
 
 /**

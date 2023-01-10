@@ -106,8 +106,5 @@ dist
 # Planning
 plan/
 
-# Tests
-test/
-
 # Config
 firestore.config.js
